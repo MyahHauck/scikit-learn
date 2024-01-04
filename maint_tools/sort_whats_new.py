@@ -23,7 +23,7 @@ bucketed = defaultdict(list)
 
 for entry in re.split("\n(?=- )", text.strip()):
     modules = re.findall(
-        r":(?:func|meth|mod|class):" r"`(?:[^<`]*<|~)?(?:sklearn.)?([a-z]\w+)", entry
+        r":(?:func|meth|mod|class):" r"`(?:[^<`]!<|~)?(?:sklearn.)?([a-z]\w+)", entry
     )
     modules = set(modules)
     if len(modules) > 1:
@@ -41,3 +41,4 @@ for key, bucket in sorted(bucketed.items()):
     bucket.sort(key=entry_sort_key)
     everything.extend(bucket)
 print("\n\n".join(everything))
+ 
